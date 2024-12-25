@@ -5,7 +5,7 @@ import cors from 'cors';
 const app = express();
 const port = 8080;
 
-const url = 'mongodb://localhost:27017/todolist';
+const url = 'mongodb://127.0.0.1:27017/todomern';
 
 app.use(cors());
 
