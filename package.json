@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon",
-    "mongo" : "mongod"
+    "mongo": "mongod"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mongoose": "^8.9.2",

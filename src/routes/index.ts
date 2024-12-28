@@ -1,4 +1,5 @@
 import { Router } from "express";
+import bodyParser from "body-parser"
 import {
     getTodos,
     getTodo,
@@ -9,9 +10,12 @@ import {
 
 
 const router = Router();
+const parser = bodyParser.json()
 
 router.get("/api",getTodos);
-router.get("/api/:id",getTodo);
-router.post("/api",addTodo);
-router.put("/api/:id",updateTodo);
-router.delete("/api/:id",deleteTodo);
+router.get("/api/:id",parser,getTodo);
+router.post("/api",parser,addTodo);
+router.put("/api/:id",parser,updateTodo);
+router.delete("/api/:id",parser,deleteTodo);
+
+export default router

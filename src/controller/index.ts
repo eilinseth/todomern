@@ -50,12 +50,12 @@ const getTodo = async (req:Request,res:Response):Promise<void> => {
 
 const addTodo = async (req:Request,res:Response):Promise<void> => {
     try{
-       const body : Pick<Todo,'title' | 'status'> = req.body
+       const body : Pick<Todo, 'title' | 'status'> = req.body
 
        if(!body.title || !body.status){
-        res.status(401).json({
-            status : 401 ,
-            message : "data invalid , Unauthorized"
+        res.status(400).json({
+            status : 400 ,
+            message : "data invalid , Bad request"
         })
         return
        }
@@ -66,19 +66,17 @@ const addTodo = async (req:Request,res:Response):Promise<void> => {
        })
 
        await newTodo.save()
-       const todos = await TodoModel.find()
 
        res.status(200).json({
         status : 200,
         message : "OK",
         added : newTodo,
-        data:todos
        })
     }catch(error){
         console.error(`${error}`)
         res.status(500).json({
             status : 500,
-            message : "Internal Server Error"
+            message : error.message
         })
     }
 }
@@ -106,6 +104,7 @@ const updateTodo = async (req:Request,res:Response):Promise<void> => {
                 status:501,
                 message : "Update failed , Not implemented"
             })
+            return
         }
         res.status(200).json({
             status : 200 ,
@@ -124,12 +123,20 @@ const updateTodo = async (req:Request,res:Response):Promise<void> => {
 const deleteTodo = async (req:Request,res:Response):Promise<void> => {
     try{
         const {id} = req.params;
-        await TodoModel.findByIdAndDelete({_id:id})
+        if(!id){
+            res.status(404).json({
+                status:404,
+                message:"Id not Found"
+            })
+            return
+        }
+        const deletedTodo = await TodoModel.findByIdAndDelete({_id:id})
         const updatedTodos= await TodoModel.find()
         
         res.status(200).json({
             status:200,
             message: "Delete Success",
+            deletedTodo,
             updatedTodos
         })
     }catch(error){
