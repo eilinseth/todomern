@@ -6,7 +6,7 @@ interface TaskListProp {
 
 const TaskList: React.FC<TaskListProp> = ({ children }) => {
   return (
-    <div className="container mx-auto text-4xl bg-navy px-4 h-screen max-w-[70%] relative">
+    <div className=" px-4 container mx-auto text-4xl bg-navy h-screen w-[70%] relative box-border">
       <h1 className="text-center text-brightGray py-4">To do List</h1>
       {children}
     </div>
