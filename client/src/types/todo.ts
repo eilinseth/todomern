@@ -8,7 +8,7 @@ interface Todo {
 }
 
 export interface Todos {
-  todos: Todo[];
+  data: Todo[];
 }
 
 export interface GetTodoResult {
