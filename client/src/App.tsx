@@ -9,12 +9,12 @@ import { useQuery } from 'react-query'
 
 function App() {
 
-  const {data:todos=[],isLoading} = useQuery('todos',getTodos);
+  const {data} = useQuery('todos',getTodos);
 
   return (
     <div >
       <TaskList>
-        <TaskCard todos={todos} />
+        <TaskCard todos={data} />
         {/* <DeleteBox/> */}
         <AddButton/>
         {/* <Form/> */}

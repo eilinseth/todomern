@@ -6,7 +6,7 @@ import { Todos } from '../../types/todo';
 import classnames from "classnames"
 
 interface Prop {
-  todos: Todos ;
+  todos: Todos | undefined ;
 }
 
 
