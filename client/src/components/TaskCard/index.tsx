@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChecklistSvgComponent from '../../assets/svg/checklist';
 import TrashSvgComponent from '../../assets/svg/trash';
 import { Todos } from '../../types/todo';
 import classnames from 'classnames';
 import { updateTodo } from '../../api/updateTodo';
 import { useMutation, useQueryClient } from 'react-query';
+import DeleteBox from '../DeleteBox';
 
 interface Prop {
   todos: Todos | undefined;
+  open : () => void
+  isOpen : boolean
 }
 
-const TaskCard: React.FC<Prop> = ({ todos }) => {
+const TaskCard: React.FC<Prop> = ({ todos,open,isOpen }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(updateTodo, {
@@ -21,6 +24,13 @@ const TaskCard: React.FC<Prop> = ({ todos }) => {
       console.error(error);
     },
   });
+
+  const [taskId,setTaskId] = useState('')
+
+  function idContainer(id:string){
+    setTaskId(id)
+    open()
+  }
 
   if (!todos)
     return (
@@ -37,7 +47,7 @@ const TaskCard: React.FC<Prop> = ({ todos }) => {
             className={classnames(
               'flex p-3 bg-white rounded-xl justify-between',
               {
-                'bg-slate-400': todo.status === 'completed',
+                'bg-slate-300': todo.status === 'completed',
               }
             )}
             key={todo._id}
@@ -60,9 +70,12 @@ const TaskCard: React.FC<Prop> = ({ todos }) => {
               >
                 <ChecklistSvgComponent />
               </button>
-              <button className="text-red-500">
-                <TrashSvgComponent />
+              <button className="text-red-500" onClick={() => idContainer(todo._id)}>
+                <TrashSvgComponent  />
               </button>
+              
+              {isOpen && <DeleteBox open={open} id={taskId}/>}
+
             </div>
           </div>
         ))}
