@@ -78,6 +78,7 @@ const TaskCard: React.FC<Prop> = ({ todos,open,isOpen }) => {
 
             </div>
           </div>
+
         ))}
       </div>
     </div>
