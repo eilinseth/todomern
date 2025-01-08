@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon",
-    "mongo": "mongod --dbpath C:\\data\\db"
+    "mongo": "mongod --dbpath C:\\data\\db",
+    "mongod" : "mongo"
   },
   "author": "",
   "license": "ISC",

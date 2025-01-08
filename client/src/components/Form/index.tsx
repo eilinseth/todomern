@@ -32,11 +32,11 @@ const Form : React.FC<prop> = ({open}) => {
              </div>
 
             
-            <form className=" absolute left-1/2 transform -translate-x-1/2 h-full z-10 bg-white px-4 pt-6 rounded-tl-2xl rounded-tr-2xl w-[90%] ">
-                <button onClick={open} className="absolute right-2 px-3 pb-1 text-2xl top-2 bg-red-500 rounded-full text-white">x</button>
-                <input type="text" className="w-full text-black text-sm py-2 px-4 rounded-xl" placeholder="Input here..." />
+            <form className="flex flex-col gap-5 absolute left-1/2 transform -translate-x-1/2 h-full z-10 bg-white px-4 pt-6 rounded-tl-2xl rounded-tr-2xl w-screen ">
+                <button onClick={open} className="absolute -right-2 px-3 pb-1 text-lg -top-2 bg-red-500 rounded-full text-white">x</button>
+                <input type="text" className="w-full text-black text-sm py-1 px-4 rounded-xl" placeholder="Input here..." />
                 <div className="text-center ">
-                    <button className="text-sm font-bold bg-green-600 w-[40%] rounded-full p-1 mt-12 text-white">Submit</button>
+                    <button className="text-xs font-bold bg-green-600 w-[40%] rounded-full p-1 text-white">Submit</button>
                 </div>
             </form>
         

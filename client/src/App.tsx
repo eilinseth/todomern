@@ -10,7 +10,7 @@ import { useState } from 'react'
 
 function App() {
 
-  const {data} = useQuery('todos',getTodos);
+  const {data,isLoading} = useQuery('todos',getTodos);
   const [isOpen,setIsOpen] = useState(false)
   const [isOpen2,setIsOpen2] = useState(false)
   
@@ -24,7 +24,7 @@ function App() {
   return (
     <div >
       <TaskList>
-        <TaskCard todos={data} open={open} isOpen={isOpen} />
+        <TaskCard todos={data} open={open} isOpen={isOpen} loading={isLoading} />
         <AddButton open={()=> setIsOpen2(!isOpen2)}/>
         {isOpen2 && <Form open={()=> setIsOpen2(!isOpen2)} />}
       </TaskList>

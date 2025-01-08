@@ -6,14 +6,16 @@ import classnames from 'classnames';
 import { updateTodo } from '../../api/updateTodo';
 import { useMutation, useQueryClient } from 'react-query';
 import DeleteBox from '../DeleteBox';
+import ClockSvgComponent from '../../assets/svg/clock';
 
 interface Prop {
   todos: Todos | undefined;
   open : () => void
   isOpen : boolean
+  loading:boolean
 }
 
-const TaskCard: React.FC<Prop> = ({ todos,open,isOpen }) => {
+const TaskCard: React.FC<Prop> = ({ todos,open,isOpen ,loading}) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(updateTodo, {
@@ -47,13 +49,13 @@ const TaskCard: React.FC<Prop> = ({ todos,open,isOpen }) => {
             className={classnames(
               'flex p-3 bg-white rounded-xl justify-between',
               {
-                'bg-slate-300': todo.status === 'completed',
+                'bg-slate-400': todo.status === 'completed',
               }
             )}
             key={todo._id}
           >
             <p
-              className={classnames('text-black text-xl', {
+              className={classnames('text-black text-lg', {
                 'line-through': todo.status === 'completed',
               })}
             >
@@ -68,7 +70,7 @@ const TaskCard: React.FC<Prop> = ({ todos,open,isOpen }) => {
                   mutation.mutate(todo._id);
                 }}
               >
-                <ChecklistSvgComponent />
+                {loading === true ? <ClockSvgComponent/> : <ChecklistSvgComponent />}
               </button>
               <button className="text-red-500" onClick={() => idContainer(todo._id)}>
                 <TrashSvgComponent  />
