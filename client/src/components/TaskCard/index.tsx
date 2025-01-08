@@ -55,7 +55,7 @@ const TaskCard: React.FC<Prop> = ({ todos,open,isOpen ,loading}) => {
             key={todo._id}
           >
             <p
-              className={classnames('text-black text-lg', {
+              className={classnames('text-black text-sm', {
                 'line-through': todo.status === 'completed',
               })}
             >
